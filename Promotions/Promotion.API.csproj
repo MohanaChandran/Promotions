@@ -16,8 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Exceptions\Exceptions.csproj" />
-    <ProjectReference Include="..\Logger\Logger.csproj" />
+    <ProjectReference Include="..\Logger\Promotion.Utils.csproj" />
     <ProjectReference Include="..\Promotions.Infra\Promotions.Infra.csproj" />
     <ProjectReference Include="..\Propmotions.Core\Propmotions.Core.csproj" />
   </ItemGroup>

@@ -49,7 +49,6 @@ namespace Promotion.Controllers
         /// <returns></returns>
         protected async Task<IActionResult> HandleExcpetion(Exception ex)
         {
-
             _logger.Log(ex);
 
             ObjectResult result = null;

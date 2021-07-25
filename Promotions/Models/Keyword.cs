@@ -7,6 +7,7 @@ namespace Promotion.Models
 {
     public class Keyword : BaseModel
     {
+        public string Description { get; set; }
         public string Name { get; set; }        
         public virtual ICollection<KeywordDocumentMapping> DocumemtMappings { get; set; }
     }

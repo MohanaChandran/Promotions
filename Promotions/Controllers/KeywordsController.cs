@@ -34,7 +34,7 @@ namespace Promotion.Controllers
             try
             {
                 return Ok(
-                    await _keywordService.GetKeywords(name.Trim())
+                    await _keywordService.GetKeywords(string.IsNullOrWhiteSpace(name) ? "" : name.Trim())
                     );
             }
             catch (Exception ex)
