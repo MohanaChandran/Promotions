@@ -16,8 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Logger\Promotion.Utils.csproj" />
     <ProjectReference Include="..\Promotions.Infra\Promotions.Infra.csproj" />
+    <ProjectReference Include="..\Promotions.Utils\Promotion.Utils.csproj" />
     <ProjectReference Include="..\Propmotions.Core\Propmotions.Core.csproj" />
   </ItemGroup>
 

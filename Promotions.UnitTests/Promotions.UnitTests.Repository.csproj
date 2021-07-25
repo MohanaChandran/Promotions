@@ -15,7 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Logger\Promotion.Utils.csproj" />
     <ProjectReference Include="..\Promotions.Infra\Promotions.Infra.csproj" />
     <ProjectReference Include="..\Promotions\Promotion.API.csproj" />
     <ProjectReference Include="..\Propmotions.Core\Propmotions.Core.csproj" />
