@@ -11,15 +11,17 @@ using Promotion.Services;
 
 namespace Promotion.Controllers
 {
+
+    /// <summary>
+    /// DocumentController
+    /// </summary>
     public class DocumentController : BaseController
     {
         private readonly IDocumentService _documentService;
         
-        public DocumentController(IDocumentService documentService
-                , IConfiguration configuration
+        public DocumentController(IDocumentService documentService             
                 , ILogger logger) : base(
-                 configuration
-                , logger)
+                 logger)
         {
             _documentService = documentService;            
         }

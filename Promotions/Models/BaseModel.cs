@@ -11,31 +11,31 @@ namespace Promotion.Models
         {
             get
             {
-                return _createdDate == DateTime.MinValue ? DateTime.UtcNow
-                    : TimeZoneInfo.ConvertTimeFromUtc(_createdDate,
+                return createdDate == DateTime.MinValue ? DateTime.UtcNow
+                    : TimeZoneInfo.ConvertTimeFromUtc(createdDate,
                     TimeZoneInfo.FindSystemTimeZoneById("India Standard Time"));
             }
-            set { _createdDate = value; }
+            set { createdDate = value; }
         }
 
         public DateTime ModifiedDate
         {
             internal get
             {
-                return _modifiedDate == DateTime.MinValue ? DateTime.UtcNow
-                      : TimeZoneInfo.ConvertTimeFromUtc(_modifiedDate,
+                return modifiedDate == DateTime.MinValue ? DateTime.UtcNow
+                      : TimeZoneInfo.ConvertTimeFromUtc(modifiedDate,
                       TimeZoneInfo.FindSystemTimeZoneById("India Standard Time"));
             }
-            set { _modifiedDate = value; }
+            set { modifiedDate = value; }
         }      
              
         public int CreatedBy { get; set; }
 
         public InstanceDetails InstanceDetails { get; set; }
 
-        private DateTime _modifiedDate { get; set; }
+        private DateTime modifiedDate { get; set; }
 
-        private DateTime _createdDate { get; set; }
+        private DateTime createdDate { get; set; }
 
 
     }

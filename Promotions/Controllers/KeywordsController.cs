@@ -15,17 +15,20 @@ namespace Promotion.Controllers
     {
         private readonly IKeywordService _keywordService;
 
-        public KeywordsController(IKeywordService keywordService
-                , IKeywordService documentService
-                , IConfiguration configuration
+        public KeywordsController(IKeywordService keywordService                           
                 , ILogger logger) : base(
-                 configuration
-                , logger)
+                 logger)
         {
             _keywordService = keywordService;
         }
 
 
+
+        /// <summary>
+        /// GetKeywords
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         [HttpGet]
         [ProducesResponseType(typeof(BaseResponse<Keyword[]>), 401)]
         [ProducesResponseType(typeof(BaseResponse<bool>), 404)]
@@ -43,6 +46,13 @@ namespace Promotion.Controllers
             }
         }
 
+
+
+        /// <summary>
+        /// GetKeywordById
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(BaseResponse<Keyword[]>), 401)]
         [ProducesResponseType(typeof(BaseResponse<bool>), 404)]
@@ -61,6 +71,11 @@ namespace Promotion.Controllers
         }
 
 
+        /// <summary>
+        /// CreateKeyword
+        /// </summary>
+        /// <param name="keyWord"></param>
+        /// <returns></returns>
         [HttpPost]
         [ProducesResponseType(typeof(BaseResponse<Keyword>), 200)]
         [ProducesResponseType(typeof(BaseResponse<bool>), 401)]
@@ -82,6 +97,12 @@ namespace Promotion.Controllers
         }
 
 
+
+        /// <summary>
+        /// UpdateKeyword
+        /// </summary>
+        /// <param name="keyWord"></param>
+        /// <returns></returns>
         [HttpPut]
         [ProducesResponseType(typeof(BaseResponse<Keyword>), 200)]
         [ProducesResponseType(typeof(BaseResponse<bool>), 401)]
@@ -104,6 +125,11 @@ namespace Promotion.Controllers
 
 
 
+        /// <summary>
+        /// DeleteKeyword
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]        
         [ProducesResponseType(typeof(BaseResponse<bool>), 401)]
         [ProducesResponseType(typeof(BaseResponse<bool>), 404)]

@@ -17,20 +17,11 @@ namespace Promotion.Controllers
     [ApiController]
     public class BaseController : Controller
     {
-
-     
-        readonly IConfiguration _configuration;
-        //private readonly LocalizationHelper _localizationHelper;
         protected readonly ILogger _logger;
       
-
-        public BaseController(
-              IConfiguration configuration
-            , ILogger logger)
-        {
-         
-            _configuration = configuration;
-            //_localizationHelper = new LocalizationHelper(this);
+        public BaseController(         
+            ILogger logger)
+        {   
             _logger = logger;           
         }
 
@@ -51,7 +42,7 @@ namespace Promotion.Controllers
         {
             _logger.Log(ex);
 
-            ObjectResult result = null;
+            ObjectResult result;
 
             var errorResponse = GetErrorResponse<bool>(ex);
 
@@ -67,17 +58,13 @@ namespace Promotion.Controllers
         private BaseResponse<T> GetErrorResponse<T>(Exception ex)
         {
             var message = (ex is BaseException) ?  ex.Message : "";
-               //Mohan - Change this
-               //string.IsNullOrEmpty(_localizationHelper.GetLocalizedMessage(((BaseException)ex).ErrorCode))
-              // : _localizationHelper.GetLocalizedMessage(((BaseException)ex).ErrorCode)
-               
 
             return new BaseResponse<T>()
             {
                 ErrorDetails = new ErrorDetails()
                 {
                     ErrorCode =
-              (ex is BaseException) ? ((BaseException)ex).ErrorCode : "NA",
+                         (ex is BaseException) ? ((BaseException)ex).ErrorCode : "NA",
                     ErrorMessage = message
                 }
             };
@@ -88,6 +75,8 @@ namespace Promotion.Controllers
         /// 
         /// </summary>
         /// <returns></returns>
+
+#pragma warning disable IDE060
         private InstanceDetails ValidateAndGetInstanceDetails()
         {
             var requestHeaders = HttpContext.Request.Headers;
@@ -117,8 +106,8 @@ namespace Promotion.Controllers
             {
                 throw new ModelValidationException(ModelState);
             }
-
-            UpdateInstanceDetails<BaseModel>(model.GetType(), model, ValidateAndGetInstanceDetails());
+            //Commenting since UI needs to send the details - Mohan
+            //UpdateInstanceDetails<BaseModel>(model.GetType(), model, ValidateAndGetInstanceDetails());
         }
 
 
@@ -157,7 +146,7 @@ namespace Promotion.Controllers
         {
             try
             {
-                ((BaseModel)instance).InstanceDetails = instanceDetails;
+               ((BaseModel)instance).InstanceDetails = instanceDetails;
             }
             catch
             {

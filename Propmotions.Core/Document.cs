@@ -10,8 +10,12 @@ namespace Propmotions.Core
         public Document()
         {
 
-        }     
+        }
+
+        [Required]
         public string URL { get; set; }
+
+        [Required]
         public string Name { get; set; }       
         public virtual ICollection<KeywordDocumentMapping> DocumemtMappings { get; set; }
     }

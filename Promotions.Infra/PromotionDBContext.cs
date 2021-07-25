@@ -7,9 +7,6 @@ namespace Promotions.Infra
 {
     public partial class PromotionDBContext : DbContext
     {
-
-        string _connectionString = string.Empty;
-
         public PromotionDBContext(DbContextOptions options) : base(options)
         {   
         }
@@ -23,7 +20,7 @@ namespace Promotions.Infra
         #region Promotion
         /* -------------------------------------------Promotion START-------------------------------------------------------------------------------------*/
         public virtual DbSet<Keyword> Keyword { get; set; }
-        public virtual DbSet<Document> Document { get; set; }      
+        public virtual DbSet<Document> Document { get; set; }
 
         /* -------------------------------------------Promotion END-------------------------------------------------------------------------------------*/
         #endregion
@@ -35,7 +32,6 @@ namespace Promotions.Infra
             BuildModelForPromotion(modelBuilder);
 
             SeedData(modelBuilder);
-
         }
 
         private static DataBuilder<Document> SeedData(ModelBuilder modelBuilder)
@@ -77,12 +73,16 @@ namespace Promotions.Infra
 
         private static void BuildModelForPromotion(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Keyword>().HasKey(ur => new { ur.Id });
-            modelBuilder.Entity<Document>().HasKey(ur => new { ur.Id });
-            modelBuilder.Entity<KeywordDocumentMapping>().HasKey(ur => ur.Id);
+            modelBuilder.Entity<Keyword>().HasKey(p => p.Id );
+            modelBuilder.Entity<Document>().HasKey(p =>  p.Id);
+            modelBuilder.Entity<KeywordDocumentMapping>().HasKey(p => p.Id);
             modelBuilder.Entity<KeywordDocumentMapping>()
                  .HasIndex(p => new { p.DocumentId, p.KeywordId }).IsUnique();
-            
+
+            modelBuilder.Entity<Keyword>().Property(p =>p.Name).IsRequired().HasMaxLength(5);
+            modelBuilder.Entity<Document>().Property(p => p.Name).IsRequired().HasMaxLength(100);
+            modelBuilder.Entity<Keyword>().Property(p => p.Description).IsRequired().HasMaxLength(200);
+            modelBuilder.Entity<Document>().Property(p => p.URL).IsRequired().HasMaxLength(500);            
 
             modelBuilder.Entity<Keyword>()          
            .HasMany(e => e.DocumemtMappings)

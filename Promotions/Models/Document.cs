@@ -10,9 +10,14 @@ namespace Promotion.Models
     {
         public Document()
         {
-        }      
-      
+        }
+
+        [Required]
+        [MaxLength(100)]
         public string Name { get; set; }
+
+        [Required]
+        [MaxLength(500)]
         public string URL { get; set; }
         public virtual ICollection<KeywordDocumentMapping> DocumemtMappings { get; set; }
     }

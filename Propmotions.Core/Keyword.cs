@@ -7,6 +7,7 @@ namespace Propmotions.Core
 {
     public class Keyword : BaseEntity
     {       
+        [Required]
         public string Name { get; set; }
         public string Description { get; set; }
         public virtual ICollection<KeywordDocumentMapping> DocumemtMappings { get; set; }

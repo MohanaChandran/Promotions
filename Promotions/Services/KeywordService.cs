@@ -8,7 +8,11 @@ using System.Threading.Tasks;
 
 namespace Promotion.Services
 {
-    public class KeywordService : IKeywordService
+
+    /// <summary>
+    /// Keyword service
+    /// </summary>
+    internal class KeywordService : IKeywordService
     {
 
         private readonly IRepository _repository;
@@ -20,6 +24,12 @@ namespace Promotion.Services
             _mapper = mapper;
         }
 
+
+        /// <summary>
+        /// CreateKeyword
+        /// </summary>
+        /// <param name="keyWord"></param>
+        /// <returns></returns>
         public async Task<Keyword> CreateKeyword(Keyword keyWord)
         {
             var keyword = await _repository.Add<Propmotions.Core.Keyword>(
@@ -28,11 +38,23 @@ namespace Promotion.Services
             return _mapper.Map<Keyword>(keyword);
         }
 
+
+        /// <summary>
+        /// DeleteKeyword
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task DeleteKeyword(int id)
         {
             await _repository.Delete<Propmotions.Core.Keyword>(id);           
         }
 
+
+        /// <summary>
+        /// GetKeywords
+        /// </summary>
+        /// <param name="keywordName"></param>
+        /// <returns></returns>
         public async Task<ICollection<Keyword>> GetKeywords(string keywordName)
         {
             var keywords = await _repository.GetAll<Propmotions.Core.Keyword>(
@@ -41,6 +63,12 @@ namespace Promotion.Services
             return _mapper.Map<ICollection<Keyword>>(keywords);
         }
 
+
+        /// <summary>
+        /// GetKeywordById
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<Keyword> GetKeywordById(int id)
         {
             var keyword = await _repository.GetById<Propmotions.Core.Keyword>(id, "DocumemtMappings");
@@ -48,6 +76,12 @@ namespace Promotion.Services
             return _mapper.Map<Keyword>(keyword);
         }
 
+
+        /// <summary>
+        /// UpdateKeyword
+        /// </summary>
+        /// <param name="keyWord"></param>
+        /// <returns></returns>
         public async Task<Keyword> UpdateKeyword(Keyword keyWord)
         {   
             var keyword = await  _repository.Update<Propmotions.Core.Keyword>(
